@@ -1,0 +1,25 @@
+
+### Gesture Recognition Model for Smart TV
+
+The objective was to develop a Conv3D model to identify five hand gestures captured via a webcam on a smart TV. Various iterations were made to balance accuracy and memory efficiency. Here’s a summary of experiments and decisions:
+
+---
+
+| Experiment | Model   | Result                     | Decision + Explanation |
+|------------|---------|----------------------------|-------------------------|
+| **1**      | Conv3D  | Generator error            | Resized images to 100x100 for uniformity across frames, resolving shape inconsistency issues. |
+| **2**      | Conv3D  | Too many parameters        | Reduced layers and filters to fit memory limits, making the model trainable on available resources. |
+| **3**      | Conv3D  | Accuracy: 21%              | Reduced filter size, decreasing trainable parameters and memory usage. Improved model efficiency. |
+| **4**      | Conv3D  | Accuracy: 32%              | Adjusted cropping in the generator to retain more image information, slightly improving validation accuracy. |
+| **5**      | Conv3D  | Accuracy: 38%              | Added BatchNormalization to enhance model stability and convergence. |
+| **6**      | Conv3D  | Accuracy: 45%              | Added Dropout layers to reduce overfitting, promoting better generalization. |
+| **7**      | Conv3D  | Accuracy: 60%              | Implemented learning rate reduction on plateau, allowing finer adjustments during training. |
+| **8**      | Conv3D  | Final Accuracy: 86%        | Final model included BatchNormalization, Dropout, and learning rate adjustments for optimal performance. |
+
+---
+
+### Final Model Summary
+
+- **Final Architecture**: Conv3D model with BatchNormalization and Dropout.
+- **Validation Accuracy**: 86%.
+- **Conclusion**: The final model achieved high accuracy while remaining efficient, making it suitable for deployment on memory-limited devices like a smart TV.
